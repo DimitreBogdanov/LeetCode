@@ -2,6 +2,8 @@ package com.practice.algorithms;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -21,8 +23,13 @@ public class Problems {
     }
 
     //https://leetcode.com/problems/valid-parentheses/description/
+    //todo resubmit new solution
     static boolean isValid(String s) {
         Stack<Character> parenthesis = new Stack<>();
+        Map<String, String> map = new HashMap<>();
+        map.put(")", "(");
+        map.put("}", "{");
+        map.put("]", "[");
 
         for (Character c : s.toCharArray()) {
             if (c.toString().equals("(") || c.toString().equals("{") || c.toString().equals("[")) {
@@ -31,25 +38,9 @@ public class Problems {
             }
             if (parenthesis.empty())
                 return false;
-            switch (c.toString()) {
-                case ")":
-                    if (!parenthesis.peek().toString().equals("(")) {
-                        return false;
-                    }
-                    break;
-                case "}":
-                    if (!parenthesis.peek().toString().equals("{")) {
-                        return false;
-                    }
-                    break;
-                case "]":
-                    if (!parenthesis.peek().toString().equals("[")) {
-                        return false;
-                    }
-                    break;
-                default:
-                    return false;
-            }
+            String current = parenthesis.peek().toString();
+            if (!current.equals(map.getOrDefault(current, "")))
+                return false;
             parenthesis.pop();
         }
 
@@ -65,35 +56,20 @@ public class Problems {
         //When put all together, represents a whole number
         //Need to add 1 to that number
 
-        //Can remove the first and just add 1 to the starting element
-        boolean carry = false;
-        boolean first = true;
         for (int i = digits.length - 1; i >= 0; i--) {
-            int digit = digits[i];
-            if (first){
-                digit++;
-                first = false;
-            }
-
-            if (carry) {
-                digit++;
-                carry = false;
-            }
-
-            if(digit > 9) {
-                digit = digit - 10;
-                carry = true;
-            }
-            digits[i] = digit;
+            digits[i]++;
+            if(digits[i] > 9)
+                digits[i] = 0;
+            else
+                return digits;
         }
 
         //If you have a carry-over left at the end, unfortunately means you have to expand by one on the left
         //Create new array, start with the carry-over and copy the rest
         //Can be done by just creating a new array and setting the first element to 1, defaults rest to 0 anyways
-        if(carry){
+        if(digits[0] == 0){
             int[] result = new int[digits.length + 1];
             result[0] = 1;
-            System.arraycopy(digits, 0, result, 1, digits.length);
             return result;
         }else {
             return digits;
@@ -102,21 +78,28 @@ public class Problems {
 
     //https://leetcode.com/problems/judge-route-circle/description/
     //Not defined properly, what does it mean to make a circle
+    //Apparently as long as the end result is (0,0) it's good enough
     static boolean judgeCircle(String moves) {
+        int x = 0;
+        int y = 0;
         for (Character move:moves.toCharArray()) {
             switch (move.toString()) {
                 case "U":
+                    y++;
                     break;
                 case "D":
+                    y--;
                     break;
                 case "R":
+                    x++;
                     break;
                 case "L":
+                    x--;
                     break;
                 default:
                     return false;
             }
         }
-        return true;
+        return x == 0 && y == 0;
     }
 }
