@@ -102,4 +102,72 @@ public class Problems {
         }
         return x == 0 && y == 0;
     }
+
+    //https://leetcode.com/problems/island-perimeter/description/
+    static int islandPerimeter(int[][] grid) {
+        int perimeter = 0;
+        for (int i = 0; i < grid.length; i++){
+            for (int j = 0; j < grid[i].length; j++){
+                if (grid[i][j] == 0)
+                    continue;
+                if (i == 0)
+                    perimeter++;
+                if (i == grid.length -1)
+                    perimeter++;
+                if (j == 0)
+                    perimeter++;
+                if (j == grid[i].length - 1)
+                    perimeter++;
+                if (i > 0 && grid[i-1][j] == 0)
+                    perimeter++;
+                if (j > 0 && grid[i][j-1] == 0)
+                    perimeter++;
+                if (i < grid.length - 1 && grid[i+1][j] == 0)
+                    perimeter++;
+                if (j < grid[i].length - 1 && grid[i][j+1] == 0)
+                    perimeter++;
+            }
+        }
+        return perimeter;
+    }
+
+
+    //Test
+    static String solution(String s, int k) {
+        StringBuilder sb = new StringBuilder();
+        //This is somewhat necessary to get the length of the string without dashes, not very efficient though
+        String newString = s.replaceAll("-", "");
+
+        int outstanding = newString.length() % k;
+        int groupsGoal = newString.length() / k;
+        int totalGroups = 0;
+        int currentGroup = 0;
+
+        char[] characters = newString.toCharArray();
+        int i = 0;
+        for (; i < outstanding && i < characters.length; i++){
+            if (String.valueOf(characters[i]).equals("-")) {
+                outstanding++;
+                continue;
+            }
+            sb.append(String.valueOf(characters[i]).toUpperCase());
+        }
+
+        if (outstanding != 0 && i < characters.length)
+            sb.append("-");
+
+        while(i < characters.length){
+            if (currentGroup == k && totalGroups != groupsGoal){
+                totalGroups++;
+                sb.append("-");
+                currentGroup = 0;
+            }else {
+                currentGroup++;
+                sb.append(String.valueOf(characters[i]).toUpperCase());
+                i++;
+            }
+        }
+
+        return sb.toString();
+    }
 }
