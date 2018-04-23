@@ -1,11 +1,14 @@
 package com.practice.algorithms;
 
 
-import com.practice.structures.MinStack;
-
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(Problems.solution("r", 1));
+        System.out.println(Problems.numIslands(new char[][]{
+                {'1','1','1','1','0'},
+                {'1','1','0','1','0'},
+                {'1','1','0','0','0'},
+                {'0','0','1','1','1'}
+        }));
     }
 }
