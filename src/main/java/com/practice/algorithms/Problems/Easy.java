@@ -16,10 +16,31 @@ public class Easy {
                 return i+1;
     }
     //https://leetcode.com/problems/palindrome-number/
+    //Runtime: 7 ms, faster than 72.36% of Java online submissions for Palindrome Number.
+    //Memory Usage: 36.2 MB, less than 5.02% of Java online submissions for Palindrome Number.
+    //Could be improved by not looping twice
     public static boolean isPalindrome(int x){
         if (x < 0)
             return false;
-        return false;
+        if (x < 10)
+            return true;
+        int[] buffer = new int[Easy.stringSize(x)];
+        int i = 0;
+        for(;;){
+            int remainder = x % 10;
+            x = x/10;
+
+            buffer[i++] = remainder;
+
+            if (x == 0)
+                break;
+        }
+
+        for (int j = 0; j < buffer.length/2; j++){
+            if (buffer[j] != buffer[buffer.length - j - 1])
+                return false;
+        }
+        return true;
     }
 
     //https://leetcode.com/problems/reverse-integer/

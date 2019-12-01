@@ -10,7 +10,7 @@ public class Main {
     }
 
     static boolean palindromeInteger(int x){
-        if (x < 0)
+        if (x <= -0)
             return false;
         int[] buffer = new int[Easy.stringSize(x)];
         int i = 0;

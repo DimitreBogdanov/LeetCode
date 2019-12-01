@@ -33,21 +33,22 @@ public class EasyTest {
 
     @Test
     public void isPalindromeTest(){
-        assertEquals(false, Easy.isPalindrome(-5));
-        assertEquals(false, Easy.isPalindrome(-121));
+        assertFalse(Easy.isPalindrome(-5));
+        assertFalse(Easy.isPalindrome(-121));
+//        assertFalse(Easy.isPalindrome(-0));
 
-        assertEquals(true, Easy.isPalindrome(1));
-        assertEquals(true, Easy.isPalindrome(0));
-        assertEquals(true, Easy.isPalindrome(121));
-        assertEquals(true, Easy.isPalindrome(1221));
-        assertEquals(true, Easy.isPalindrome(12344321));
-        assertEquals(true, Easy.isPalindrome(1234321));
+        assertTrue(Easy.isPalindrome(1));
+        assertTrue(Easy.isPalindrome(0));
+        assertTrue(Easy.isPalindrome(121));
+        assertTrue(Easy.isPalindrome(1221));
+        assertTrue(Easy.isPalindrome(12344321));
+        assertTrue(Easy.isPalindrome(1234321));
 
-        assertEquals(false, Easy.isPalindrome(12));
-        assertEquals(false, Easy.isPalindrome(1222));
-        assertEquals(false, Easy.isPalindrome(123456));
-        assertEquals(false, Easy.isPalindrome(123455432));
-        assertEquals(false, Easy.isPalindrome(1234554));
+        assertFalse(Easy.isPalindrome(12));
+        assertFalse(Easy.isPalindrome(1222));
+        assertFalse(Easy.isPalindrome(123456));
+        assertFalse(Easy.isPalindrome(123455432));
+        assertFalse(Easy.isPalindrome(1234554));
     }
 
 }
