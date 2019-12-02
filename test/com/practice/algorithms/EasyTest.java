@@ -51,4 +51,36 @@ public class EasyTest {
         assertFalse(Easy.isPalindrome(1234554));
     }
 
+    @Test
+    public void romanToIntTest(){
+
+        // Base cases
+        assertEquals(1, Easy.romanToInt("I"));
+        assertEquals(5, Easy.romanToInt("V"));
+        assertEquals(10, Easy.romanToInt("X"));
+        assertEquals(50, Easy.romanToInt("L"));
+        assertEquals(100, Easy.romanToInt("C"));
+        assertEquals(500, Easy.romanToInt("D"));
+        assertEquals(1000, Easy.romanToInt("M"));
+
+
+        // Addition cases
+        assertEquals(3, Easy.romanToInt("III"));
+        assertEquals(15, Easy.romanToInt("VVV"));
+        assertEquals(30, Easy.romanToInt("XXX"));
+        assertEquals(150, Easy.romanToInt("LLL"));
+        assertEquals(300, Easy.romanToInt("CCC"));
+        assertEquals(1500, Easy.romanToInt("DDD"));
+        assertEquals(3000, Easy.romanToInt("MMM"));
+
+
+        // Subtraction cases
+        assertEquals(9, Easy.romanToInt("IX"));
+        assertEquals(58, Easy.romanToInt("LVIII"));
+        assertEquals(4, Easy.romanToInt("IV"));
+        assertEquals(1994, Easy.romanToInt("MCMXCIV"));
+        assertEquals(994, Easy.romanToInt("CMXCIV"));
+
+    }
+
 }

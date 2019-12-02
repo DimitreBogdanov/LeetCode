@@ -15,6 +15,49 @@ public class Easy {
             if (x <= sizeTable[i])
                 return i+1;
     }
+
+    static final Map<Character, Integer> romanToIntMap = new HashMap<>();
+    static{
+        romanToIntMap.put('M', 1000);
+        romanToIntMap.put('D', 500);
+        romanToIntMap.put('C', 100);
+        romanToIntMap.put('L', 50);
+        romanToIntMap.put('X', 10);
+        romanToIntMap.put('V', 5);
+        romanToIntMap.put('I', 1);
+    }
+
+    //https://leetcode.com/problems/roman-to-integer/
+    //Runtime: 5 ms, faster than 59.36% of Java online submissions for Roman to Integer.
+    //Memory Usage: 36.3 MB, less than 100.00% of Java online submissions for Roman to Integer.
+    public static int romanToInt(String s){
+        if (s.length() <= 0)
+            return 0;
+        if (s.length() == 1)
+            return romanToIntMap.getOrDefault(s.charAt(0), 0);
+        int total = 0;
+        char[] numerals = s.toCharArray();
+        for (int i = s.length() - 1; i >= 0; i--){
+            char currentChat = numerals[i];
+            int numberValue = romanToIntMap.getOrDefault(currentChat, 0);
+            if (numberValue == 0)
+                continue;
+
+            if ( i > 0 ){
+                int nextNumber = romanToIntMap.getOrDefault(numerals[i - 1], 0);
+                if (nextNumber < numberValue){
+                    total += (numberValue - nextNumber);
+                    i--;
+                }else {
+                    total += numberValue;
+                }
+            }else {
+                total += numberValue;
+            }
+        }
+        return total;
+    }
+
     //https://leetcode.com/problems/palindrome-number/
     //Runtime: 7 ms, faster than 72.36% of Java online submissions for Palindrome Number.
     //Memory Usage: 36.2 MB, less than 5.02% of Java online submissions for Palindrome Number.
