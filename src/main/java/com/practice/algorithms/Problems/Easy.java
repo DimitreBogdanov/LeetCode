@@ -16,7 +16,7 @@ public class Easy {
                 return i+1;
     }
 
-    static final Map<Character, Integer> romanToIntMap = new HashMap<>();
+    private static final Map<Character, Integer> romanToIntMap = new HashMap<>();
     static{
         romanToIntMap.put('M', 1000);
         romanToIntMap.put('D', 500);
@@ -25,6 +25,26 @@ public class Easy {
         romanToIntMap.put('X', 10);
         romanToIntMap.put('V', 5);
         romanToIntMap.put('I', 1);
+    }
+
+    //https://leetcode.com/problems/longest-common-prefix/
+    public static String longestCommonPrefix(String[] strs){
+        if (strs.length == 0)
+            return "";
+        String str = strs[0];
+        if (strs.length == 1)
+            return str;
+        String currentPrefix = "";
+
+        for (int i = 0; i < str.length() - 1; i++){
+            currentPrefix += str.substring(i, i + 2);
+            for (int j = 1; j < strs.length; j++){
+                if (strs[j].startsWith(currentPrefix))
+                    return currentPrefix;
+            }
+        }
+
+        return "";
     }
 
     //https://leetcode.com/problems/roman-to-integer/
@@ -86,15 +106,21 @@ public class Easy {
         return true;
     }
 
+
+
     //https://leetcode.com/problems/reverse-integer/
     //Completed
+    //Runtime: 2 ms, faster than 24.62% of Java online submissions for Reverse Integer.
+    //Memory Usage: 34.2 MB, less than 5.55% of Java online submissions for Reverse Integer.
     public static int reverseInteger(int x){
         try{
             boolean negative = false;
-            char[] inputIntegerChars = Integer.toString(x).toCharArray();
+            char[] inputIntegerChars;
             if (x < 0){
                 negative = true;
                 inputIntegerChars = Integer.toString(x).substring(1).toCharArray();
+            }else {
+                inputIntegerChars = Integer.toString(x).toCharArray();
             }
             char[] outputIntegerChars = new char[inputIntegerChars.length];
             int nonZeroIndex = -1;
@@ -112,6 +138,83 @@ public class Easy {
             if (negative)
                 return (result * -1);
             return result;
+        } catch (NumberFormatException nfe){
+            return 0;
+        }
+    }
+    //https://leetcode.com/problems/reverse-integer/
+    //Not working yet
+    public static int reverseIntegerNewSolution(int x){
+        try{
+            if (x == 0)
+                return x;
+            boolean negative = false;
+            if (x < 0) {
+                negative = true;
+                x*= -1;
+            }
+            boolean numberStart = false;
+            long finalNum = 0;
+            for (;;){
+                int numberSize = Easy.stringSize(x);
+                int multiplier = (int)Math.pow(10, numberSize - 1);
+                int remainder = x % 10;
+                x = x / 10;
+                if (remainder == 0 && !numberStart)
+                    continue;
+                if (remainder != 0 && !numberStart){
+                    numberStart = true;
+                }
+                finalNum += remainder * multiplier;
+                if (finalNum < 0)
+                    return 0;
+                if ( x == 0 )
+                    break;
+            }
+            //return Integer.parseInt(finalNum) * (negative? -1 : 1);
+            if (finalNum > Integer.MAX_VALUE || finalNum < Integer.MIN_VALUE)
+                return 0;
+            return negative ? -1 * (int)finalNum: (int)finalNum;
+        } catch ( NumberFormatException nfe){
+            return 0;
+        }
+    }
+    //https://leetcode.com/problems/reverse-integer/
+    //Completed
+    //Runtime: 2 ms, faster than 24.62% of Java online submissions for Reverse Integer.
+    //Memory Usage: 33.7 MB, less than 11.66% of Java online submissions for Reverse Integer.
+    public static int reverseInteger3(int x){
+        try{
+            boolean negative = false;
+            char[] inputIntegerChars;
+            if (x < 0){
+                negative = true;
+                inputIntegerChars = Integer.toString(x).substring(1).toCharArray();
+            }else {
+                inputIntegerChars = Integer.toString(x).toCharArray();
+            }
+            for (int i = 0; i < inputIntegerChars.length/2; i++){
+                char temp = inputIntegerChars[i];
+                inputIntegerChars[i] = inputIntegerChars[inputIntegerChars.length -i -1];
+                inputIntegerChars[inputIntegerChars.length - i - 1] = temp;
+            }
+            return negative? -1* Integer.parseInt(new String(inputIntegerChars)): Integer.parseInt(new String(inputIntegerChars));
+//            char[] outputIntegerChars = new char[inputIntegerChars.length];
+//            int nonZeroIndex = -1;
+//            for (int i = 0; i < inputIntegerChars.length; i++){
+//                if (!String.valueOf(inputIntegerChars[i]).equals("0"))
+//                    nonZeroIndex = i;
+//                outputIntegerChars[inputIntegerChars.length - i - 1] = inputIntegerChars[i];
+//            }
+//            String outputString = new String(outputIntegerChars);
+//            int result;
+//            if (nonZeroIndex > 0 && nonZeroIndex < outputString.length() - 1)
+//                result = Integer.parseInt(outputString.substring(outputString.length() - nonZeroIndex - 1));
+//            else
+//                result = Integer.parseInt(outputString);
+//            if (negative)
+//                return (result * -1);
+//            return result;
         } catch (NumberFormatException nfe){
             return 0;
         }
