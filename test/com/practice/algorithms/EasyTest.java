@@ -135,7 +135,7 @@ public class EasyTest {
     }
 
     @Test
-    public void longestCommonPrefix() {
+    public void longestCommonPrefixTest() {
 
         assertEquals("", Easy.longestCommonPrefix(new String[]{}));
         assertEquals("flower", Easy.longestCommonPrefix(new String[]{"flower"}));
@@ -143,6 +143,33 @@ public class EasyTest {
         assertEquals("", Easy.longestCommonPrefix(new String[]{"fl", "anything", "something"}));
         assertEquals("start", Easy.longestCommonPrefix(new String[]{"start", "starting"}));
         assertEquals("sa", Easy.longestCommonPrefix(new String[]{"save", "say", "sa", "sample"}));
+
+    }
+
+    @Test
+    public void mergeTwoListsTest() {
+
+        Easy.ListNode l1 = new Easy.ListNode(1);
+        Easy.ListNode l2 = new Easy.ListNode(2);
+        Easy.ListNode l3 = new Easy.ListNode(3);
+        Easy.ListNode l4 = new Easy.ListNode(7);
+        l3.next = l4;
+        l2.next = l3;
+        l1.next = l2;
+
+        Easy.ListNode ll1 = new Easy.ListNode(2);
+        Easy.ListNode ll2 = new Easy.ListNode(4);
+        Easy.ListNode ll3 = new Easy.ListNode(7);
+        Easy.ListNode ll4 = new Easy.ListNode(10);
+        ll3.next = ll4;
+        ll2.next = ll3;
+        ll1.next = ll2;
+
+
+//        assertEquals("1237", Easy.mergeTwoLists(null, l1).stringify());
+//        assertEquals("1237", Easy.mergeTwoLists(l1, null).stringify());
+//        assertNull(Easy.mergeTwoLists(null, null));
+//        assertEquals("122347710", Easy.mergeTwoLists(l1, l2).stringify());
 
     }
 

@@ -27,6 +27,42 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    //https://leetcode.com/problems/merge-two-sorted-lists/
+    public static class ListNode{
+        int val;
+        public ListNode next;
+        public ListNode(int x) { val = x; }
+        public String stringify(){return val + (next == null ? "" : next.stringify());}
+    }
+
+    //https://leetcode.com/problems/merge-two-sorted-lists/submissions/
+    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Two Sorted Lists.
+    //Memory Usage: 39.7 MB, less than 16.16% of Java online submissions for Merge Two Sorted Lists.
+    //The key is that you keep a reference to the beginning, which really is just a dummy, from there on the next is start, and you return next at the end.
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2){
+        if (l1 == null && l2 == null)
+            return null;
+        ListNode result = new ListNode(0);
+        ListNode end = result;
+        do{
+            if (l1 == null){
+                end.next = l2;
+                break;
+            }else if (l2 == null) {
+                end.next = l1;
+                break;
+            }else if (l1.val <= l2.val){
+                end.next = l1;
+                l1 = l1.next;
+            }else {
+                end.next = l2;
+                l2 = l2.next;
+            }
+            end = end.next;
+        } while(true);
+        return result.next;
+    }
+
     //https://leetcode.com/problems/longest-common-prefix/
     //Runtime: 2 ms, faster than 16.41% of Java online submissions for Longest Common Prefix.
     //Memory Usage: 37.5 MB, less than 86.55% of Java online submissions for Longest Common Prefix.
