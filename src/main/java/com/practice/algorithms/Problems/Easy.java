@@ -28,6 +28,8 @@ public class Easy {
     }
 
     //https://leetcode.com/problems/longest-common-prefix/
+    //Runtime: 2 ms, faster than 16.41% of Java online submissions for Longest Common Prefix.
+    //Memory Usage: 37.5 MB, less than 86.55% of Java online submissions for Longest Common Prefix.
     public static String longestCommonPrefix(String[] strs){
         if (strs.length == 0)
             return "";
@@ -36,15 +38,15 @@ public class Easy {
             return str;
         String currentPrefix = "";
 
-        for (int i = 0; i < str.length() - 1; i++){
-            currentPrefix += str.substring(i, i + 2);
+        for (int i = 0; i < str.length(); i++){
+            currentPrefix = str.substring(0, i + 1);
             for (int j = 1; j < strs.length; j++){
-                if (strs[j].startsWith(currentPrefix))
-                    return currentPrefix;
+                if (!strs[j].startsWith(currentPrefix))
+                    return currentPrefix.substring(0, i);
             }
         }
 
-        return "";
+        return currentPrefix;
     }
 
     //https://leetcode.com/problems/roman-to-integer/
