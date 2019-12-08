@@ -8,6 +8,13 @@ public class Easy {
      * Easy section
      */
 
+    //TODO
+    //A is an array of N values where A[index] represent the height of a tree. The heights of the trees must always be varying (up, down, up OR down, up, down). Tree height is between 2 and 1000. N is between 1 and 100, 000.
+    //If the pattern is invalid, a tree must be shortened to make it valid. Write a function that return the number of tress that must be shortened.
+    //Ex: [5, 4, 3, 2, 6]
+    //Here, the function would return 1 because 4 can be shorted to 2 to make it valid.
+    //This is not from leetcode
+
     private final static int [] sizeTable = { 9, 99, 999, 9999, 99999, 999999, 9999999,
             99999999, 999999999, Integer.MAX_VALUE };
     public static int stringSize(int x) {
@@ -27,14 +34,54 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+    //Need to keep track of the next available index, and keep pushing there
+    //Runtime: 1 ms, faster than 97.83% of Java online submissions for Remove Duplicates from Sorted Array.
+    //Memory Usage: 37.7 MB, less than 99.47% of Java online submissions for Remove Duplicates from Sorted Array.
+    public static int removeDuplicates2(int[] nums){
+        if (nums.length < 2)
+            return nums.length;
+        int availableIndex = 1;
+        int lastUniqueNumber = nums[0];
+        for (int i = 1; i < nums.length; i++){
+            if (nums[i] != lastUniqueNumber){
+                lastUniqueNumber = nums[i];
+                nums[availableIndex++] = nums[i];
+            }
+        }
+        return availableIndex;
+    }
+
+    //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+    //Runtime: 51 ms, faster than 5.17% of Java online submissions for Remove Duplicates from Sorted Array.
+    //Memory Usage: 43.6 MB, less than 5.32% of Java online submissions for Remove Duplicates from Sorted Array.
+    public static int removeDuplicates(int[] nums){
+        if (nums.length < 2)
+            return nums.length;
+        int length = nums.length;
+        for (int i = 1; i < length ;){
+            if (nums[i] == nums[i-1]){
+                shift(nums, i);
+                length--;
+            }else{
+                i++;
+            }
+        }
+        return length;
+    }
+
+    private static void shift(int[] nums, int index){
+        for (int i = index; i < nums.length - 1; i++){
+            nums[i] = nums[i+1];
+        }
+    }
+
     //https://leetcode.com/problems/merge-two-sorted-lists/
     public static class ListNode{
         int val;
         public ListNode next;
         public ListNode(int x) { val = x; }
-        public String stringify(){return val + (next == null ? "" : next.stringify());}
     }
-
     //https://leetcode.com/problems/merge-two-sorted-lists/submissions/
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Merge Two Sorted Lists.
     //Memory Usage: 39.7 MB, less than 16.16% of Java online submissions for Merge Two Sorted Lists.

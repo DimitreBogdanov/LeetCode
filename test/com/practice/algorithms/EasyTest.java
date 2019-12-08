@@ -173,4 +173,26 @@ public class EasyTest {
 
     }
 
+    @Test
+    public void removeDuplicatesTest() {
+        assertEquals(2, Easy.removeDuplicates(new int[]{1,1,2}));
+        assertEquals(5, Easy.removeDuplicates(new int[]{0,0,1,1,1,2,2,3,3,4}));
+        assertEquals(0, Easy.removeDuplicates(new int[]{}));
+        assertEquals(1, Easy.removeDuplicates(new int[]{1}));
+        assertEquals(1, Easy.removeDuplicates(new int[]{0,0}));
+        assertEquals(1, Easy.removeDuplicates(new int[]{1,1,1,1,1,1,1,1,1}));
+        assertEquals(9, Easy.removeDuplicates(new int[]{1,2,3,4,5,6,7,8,9}));
+    }
+
+    @Test
+    public void removeDuplicatesTest2() {
+        assertEquals(2, Easy.removeDuplicates2(new int[]{1,1,2}));
+        assertEquals(5, Easy.removeDuplicates2(new int[]{0,0,1,1,1,2,2,3,3,4}));
+        assertEquals(0, Easy.removeDuplicates2(new int[]{}));
+        assertEquals(1, Easy.removeDuplicates2(new int[]{1}));
+        assertEquals(9, Easy.removeDuplicates2(new int[]{1,2,3,4,5,6,7,8,9}));
+        assertEquals(1, Easy.removeDuplicates2(new int[]{1,1,1,1,1,1,1,1,1}));
+        assertEquals(1, Easy.removeDuplicates2(new int[]{0,0}));
+    }
+
 }
