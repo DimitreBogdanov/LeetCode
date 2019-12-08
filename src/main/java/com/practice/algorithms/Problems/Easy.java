@@ -34,6 +34,17 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    //https://leetcode.com/problems/remove-element/submissions/
+    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Element.
+    //Memory Usage: 36.1 MB, less than 100.00% of Java online submissions for Remove Element.
+    public static int removeElement(int[] nums, int val) {
+        int availableIndex = 0;
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] != val)
+                nums[availableIndex++] = nums[i];
+        return availableIndex;
+    }
+
     //https://leetcode.com/problems/remove-duplicates-from-sorted-array/
     //Need to keep track of the next available index, and keep pushing there
     //Runtime: 1 ms, faster than 97.83% of Java online submissions for Remove Duplicates from Sorted Array.

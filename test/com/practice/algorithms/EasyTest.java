@@ -195,4 +195,14 @@ public class EasyTest {
         assertEquals(1, Easy.removeDuplicates2(new int[]{0,0}));
     }
 
+    @Test
+    public void removeElementTest() {
+        assertEquals(2, Easy.removeElement(new int[]{3,2,2,3}, 3));
+        assertEquals(5, Easy.removeElement(new int[]{0,1,2,2,3,0,4,2},2));
+        assertEquals(0, Easy.removeElement(new int[]{}, 0));
+        assertEquals(5, Easy.removeElement(new int[]{2,3,4,5,6}, 1));
+        assertEquals(1, Easy.removeElement(new int[]{1,2},2));
+        assertEquals(1, Easy.removeElement(new int[]{1},2));
+    }
+
 }
