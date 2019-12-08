@@ -34,6 +34,14 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    //https://leetcode.com/problems/implement-strstr/
+    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Implement strStr().
+    //Memory Usage: 35.9 MB, less than 100.00% of Java online submissions for Implement strStr().
+    //This is dumb....
+    public static int strStr(String haystack, String needle){
+        return haystack.indexOf(needle);
+    }
+
     //https://leetcode.com/problems/remove-element/submissions/
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Element.
     //Memory Usage: 36.1 MB, less than 100.00% of Java online submissions for Remove Element.

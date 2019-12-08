@@ -205,4 +205,11 @@ public class EasyTest {
         assertEquals(1, Easy.removeElement(new int[]{1},2));
     }
 
+    @Test
+    public void strStrTest() {
+        assertEquals(0, Easy.strStr("hello", ""));
+        assertEquals(-1, Easy.strStr("hello", "a"));
+        assertEquals(2, Easy.strStr("hello", "ll"));
+    }
+
 }
