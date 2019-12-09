@@ -212,4 +212,12 @@ public class EasyTest {
         assertEquals(2, Easy.strStr("hello", "ll"));
     }
 
+    @Test
+    public void searchInsertTest(){
+        assertEquals(2, Easy.searchInsert(new int[]{1,3,5,6}, 5));
+        assertEquals(1, Easy.searchInsert(new int[]{1,3,5,6}, 2));
+        assertEquals(4, Easy.searchInsert(new int[]{1,3,5,6}, 7));
+        assertEquals(0, Easy.searchInsert(new int[]{1,3,5,6}, 0));
+    }
+
 }

@@ -34,6 +34,16 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    //https://leetcode.com/problems/search-insert-position/
+    //Runtime: 0 ms, faster than 100.00% of Java online submissions for Search Insert Position.
+    //Memory Usage: 39.1 MB, less than 100.00% of Java online submissions for Search Insert Position.
+    public static int searchInsert(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] == target || nums[i] > target)
+                return i;
+        return nums.length;
+    }
+
     //https://leetcode.com/problems/implement-strstr/
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Implement strStr().
     //Memory Usage: 35.9 MB, less than 100.00% of Java online submissions for Implement strStr().
