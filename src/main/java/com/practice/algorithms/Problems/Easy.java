@@ -34,6 +34,21 @@ public class Easy {
         romanToIntMap.put('I', 1);
     }
 
+    public static int maxSubArray(int[] nums){
+        if (nums.length == 1)
+            return nums[0];
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < nums.length-1; i++){
+            int localTotal = nums[i];
+            for (int j = i+1; j < nums.length; j++){
+                localTotal += nums[j];
+                if (localTotal > max)
+                    max = localTotal;
+            }
+        }
+        return max;
+    }
+
     //https://leetcode.com/problems/search-insert-position/
     //Runtime: 0 ms, faster than 100.00% of Java online submissions for Search Insert Position.
     //Memory Usage: 39.1 MB, less than 100.00% of Java online submissions for Search Insert Position.
