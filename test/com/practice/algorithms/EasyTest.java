@@ -220,4 +220,11 @@ public class EasyTest {
         assertEquals(0, Easy.searchInsert(new int[]{1,3,5,6}, 0));
     }
 
+    @Test
+    public void twoSumTest() {
+        assertArrayEquals(new int[]{0,1}, Easy.twoSum(new int[]{2, 7, 11, 15}, 9));
+        assertArrayEquals(new int[]{0,1}, Easy.twoSum(new int[]{-5,0}, -5));
+        assertArrayEquals(new int[]{3,4}, Easy.twoSum(new int[]{-10,-7,-6,-5,0}, -5));
+    }
+
 }

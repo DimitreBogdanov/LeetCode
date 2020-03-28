@@ -636,4 +636,23 @@ public class Easy {
         return middle;
     }
 
+    //https://leetcode.com/problems/two-sum/
+    //Runtime: 1 ms, faster than 99.89% of Java online submissions for Two Sum.
+    //Memory Usage: 39.9 MB, less than 5.65% of Java online submissions for Two Sum.
+    public static int[] twoSum(int[] nums, int target) {
+        int[] result = new int[2];
+        Map<Integer, Integer> seen = new HashMap<>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int diff = target - num;
+            if (seen.containsKey(diff)){
+                result[0] = seen.get(diff);
+                result[1] = i;
+                break;
+            }
+            seen.put(num, i);
+        }
+        return result;
+    }
+
 }
